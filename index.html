@@ -1,24 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Gabriel Coding</title>
-    <!-- MDBootstrap CSS -->
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
-        rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css">
+    <title>Cantón Chiaraque - Ruta de los Chullpares | Magia Andina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a6ea5;
+            --secondary-color: #004e98;
+            --accent-color: #ff6700;
+            --text-color: #333333;
+            --bg-color: #f4f4f4;
+            --light-color: #ffffff;
+        }
+        body {
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            font-size: 1.1em;
+        }
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+        }
+        .hero {
+            background-image: url('https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13719472_2078771962346948_1880940748316114635_o.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f798df&_nc_ohc=0zeoFCCAkUkQ7kNvgFCHFOz&_nc_ht=scontent.fscl22-1.fna&_nc_gid=AeGeFcodzwcmyn6nTUrUSIZ&oh=00_AYBsWdWWIpvgcSfbdzWX69QheH61x8ZtIzGvK5ndR17SIg&oe=672D1528');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 0.5em;
+            color: var(--light-color);
+        }
+        .hero p {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin: 0 auto 1.5em;
+        }
+        .section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        .section:nth-child(even) {
+            background-color: var(--bg-color);
+        }
+        .info-box {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        .info-box:hover {
+            transform: translateY(-5px);
+        }
+        .highlight {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cta-button:hover {
+            background-color: #e55d00;
+            transform: translateY(-2px);
+        }
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 2em 0;
+            margin-top: 2em;
+        }
+        .accordion {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            font-weight: bold;
+        }
+        .active, .accordion:hover {
+            background-color: #e7e7e7;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: var(--light-color);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            margin-top: 2%;
+            border-radius: 4px;
+        }
+        #lightbox:target {
+            outline: none;
+            display: block;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .testimonial {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--accent-color);
+        }
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        form {
+            display: grid;
+            gap: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .weather-widget {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .weather-widget h3 {
+            color: var(--light-color);
+            margin-top: 0;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container-fluid text-center vh-100 d-flex justify-content-center align-items-center">
-        <img src="logo.png" alt="Gabriel Coding Logo" id="logo" class="mb-4">
-        <h1 id="welcomeText" class="display-4"></h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-chiaraque">Sobre Chiaraque</a></li>
+                <li><a href="#chullpares">Chullpares</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#actividades">Actividades</a></li>
+                <li><a href="#como-llegar">Cómo Llegar</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Cantón Chiaraque</h1>
+            <p>Descubre la magia de los Andes bolivianos en la Ruta de los Chullpares</p>
+            <a href="#contacto" class="cta-button">Planea tu visita</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="sobre-chiaraque" class="section">
+            <h2>Bienvenidos a Cantón Chiaraque</h2>
+            <div class="info-box">
+                <p>Ubicado en la quinta sección municipal de Patacamaya, provincia Aroma del departamento de La Paz, Cantón Chiaraque es un tesoro escondido en los Andes bolivianos. Este lugar mágico te invita a sumergirte en la historia, la cultura y la belleza natural de Bolivia.</p>
+                <h3>Datos Clave:</h3>
+                <ul>
+                    <li><strong>Altura:</strong> 3.955 msnm</li>
+                    <li><strong>Clima:</strong> Principalmente frío a templado seco</li>
+                    <li><strong>Población:</strong> Principalmente de origen aymara</li>
+                    <li><strong>Economía:</strong> Basada en la agricultura y el turismo</li>
+                    <li><strong>Idiomas:</strong> Aymara y español</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h3>Historia y Cultura</h3>
+                <p>Chiaraque tiene una rica historia que se remonta a tiempos precolombinos. La región fue habitada por diversas culturas andinas, incluyendo los Tiwanaku y posteriormente los Incas. La presencia de los chullpares es un testimonio de la importancia histórica y cultural de esta zona.</p>
+                <p>Hoy en día, Chiaraque mantiene vivas muchas de sus tradiciones ancestrales. Los habitantes locales preservan sus costumbres, música, danzas y artesanías, ofreciendo a los visitantes una experiencia cultural auténtica y enriquecedora.</p>
+            </div>
+        </section>
+
+        <section id="chullpares" class="section">
+            <h2>Los Fascinantes Chullpares</h2>
+            <div class="highlight">
+                <p>Los chullpares son torres funerarias que datan del periodo 1100 - 1400 D.C., ofreciendo una ventana única al pasado de la región andina. Estas estructuras no son solo tumbas, sino también símbolos de poder y conexión espiritual.</p>
+            </div>
+            <div class="info-box">
+                <h3>Características de los Chullpares:</h3>
+                <ul>
+                    <li>Construcciones de piedra que se elevan sobre el terreno</li>
+                    <li>Tumbas de personajes importantes: mallkus o jilakatas del ayllu</li>
+                    <li>Símbolo de prestigio y marcadores territoriales</li>
+                    <li>Orientados hacia el sol naciente y las montañas sagradas (Apus)</li>
+                    <li>Reflejan creencias sobre la conexión entre los vivos y los muertos</li>
+                </ul>
+                <p>La arquitectura de los chullpares varía en tamaño y complejidad, pero todos comparten una importancia cultural y espiritual significativa para las comunidades andinas.</p>
+            </div>
+            <div class="info-box">
+                <h3>Significado Espiritual</h3>
+                <p>Para las culturas andinas, los chullpares representan mucho más que simples estructuras funerarias. Estos monumentos son considerados puntos de conexión entre el mundo terrenal y el espiritual. Se cree que las almas de los antepasados residen en estos lugares, actuando como protectores y guías para la comunidad.</p>
+                <p>Los chullpares también juegan un papel importante en las ceremonias y rituales locales, especialmente durante las celebraciones de Todos Santos (Día de los Muertos) y otras fechas significativas del calendario andino.</p>
+            </div>
+        </section>
+
+        <section id="galeria" class="section">
+            <h2>Galería de Imágenes</h2>
+            <div class="gallery">
+                <a href="#img1"><img src="https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13701152_2078770369013774_3466287978905920231_o.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f798df&_nc_ohc=BDP1hdmsjAIQ7kNvgEe0zvy&_nc_ht=scontent.fscl22-1.fna&_nc_gid=Ap6oGjdFLVXxo71j24HZ_kL&oh=00_AYBggEwJZ51boqXSpplSCLvgnAGgtN9DvmJILWtGZZPJkg&oe=672CFB67" alt="Paisaje de Chiaraque"></a>
+                <a href="#img2"><img src="https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13734921_2078770095680468_251857331964607674_o.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f798df&_nc_ohc=qIXFrAtSI70Q7kNvgEbM722&_nc_ht=scontent.fscl22-1.fna&_nc_gid=Au6WfWs58QWJrwgQ_82ik7j&oh=00_AYBR3I8tjDj47n14yi-KKhrAlnyuGYtOwhC5o2hI05R69Q&oe=672CF6D1" alt="Chullpar de Chiaraque"></a>
+                <a href="#img3"><img src="https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13731949_2078770939013717_8085428234505586034_o.jpg?_nc_cat=106&ccb=1-7&_nc_sid=f798df&_nc_ohc=qDIGn_JNdBUQ7kNvgH43al7&_nc_ht=scontent.fscl22-1.fna&_nc_gid=AGAN2RANk3D1pdgx-3oXHHO&oh=00_AYDVzJsWbtEckv3cVUDlvxHOnl6qorg46k-QH3CeHFb4yA&oe=672D022C" alt="Cultura local de Chiaraque"></a>
+                <a href="#img4"><img src="https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13719703_2078770355680442_356680813550946117_o.jpg?_nc_cat=102&ccb=1-7&_nc_sid=f798df&_nc_ohc=Pc887NuQNGoQ7kNvgH283UT&_nc_ht=scontent.fscl22-1.fna&_nc_gid=AGXD1oVY9s8KxOl7a5FUdp7&oh=00_AYBEFizCWr7sdeR9cyxJiVFz9TVjrS06PLoTOK77UDnQTQ&oe=672D15B4" alt="Vista panorámica de Chiaraque"></a>
+                <a href="#img5"><img src="https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13708360_2078771389013672_1116348000096771528_o.jpg?_nc_cat=110&ccb=1-7&_nc_sid=f798df&_nc_ohc=FTZPvINvDzkQ7kNvgGq7jkv&_nc_ht=scontent.fscl22-1.fna&_nc_gid=AHE6xlzIcOkuPnPU2QqoGDT&oh=00_AYDeKdbQNGqD52jbHDWp34XCwMYCzTngGgv_hKVrujxK6Q&oe=672D0134" alt="Entrada a Chiaraque"></a>
+                <a href="#img6"><img src="https://scontent.fscl22-1.fna.fbcdn.net/v/t31.18172-8/13730939_2078771429013668_298110415807138414_o.jpg?_nc_cat=102&ccb=1-7&_nc_sid=f798df&_nc_ohc=VS8ToyVLFj4Q7kNvgGkvLDn&_nc_ht=scontent.fscl22-1.fna&_nc_gid=AlZn7TLw4hrydrtbiAvQclR&oh=00_AYAU6GCMvj3GHusplGPDeLKW3JmonAfRbjGZuhiRtsPefg&oe=672D0A87" alt="Otra vista de Chiaraque"></a>
+            </div>
+        </section>
+
+        <section id="actividades" class="section">
+            <h2>Experiencias en Chiaraque</h2>
+            <div class="info-box">
+                <h3>Actividades para todos los gustos</h3>
+                <button class="accordion">Senderismo y Trekking</button>
+                <div class="panel">
+                    <p>Explora senderos que te llevarán a través de impresionantes paisajes andinos, visitando chullpares y comunidades locales. Disfruta de vistas panorámicas y experimenta la naturaleza en su estado más puro. Rutas disponibles para todos los niveles de experiencia.</p>
+                    <ul>
+                        <li>Ruta de los Chullpares: 4-5 horas, dificultad media</li>
+                        <li>Camino de las Lagunas: 6-7 horas, dificultad alta</li>
+                        <li>Sendero de las Comunidades: 3-4 horas, dificultad baja</li>
+                    </ul>
+                </div>
+
+                <button class="accordion">Turismo Cultural</button>
+                <div class="panel">
+                    <p>Sumérgete en la rica cultura aymara, participa en festivales locales y aprende sobre las tradiciones ancestrales de la región. Visita los chullpares y descubre la historia fascinante detrás de estas estructuras únicas. Participa en talleres de tejido tradicional y cocina andina.</p>
+                    <ul>
+                        <li>Visita guiada a los Chullpares</li>
+                        <li>Taller de tejido tradicional</li>
+                        <li>Clase de cocina andina</li>
+                        <li>Participación en ceremonias tradicionales (sujeto a calendario)</li>
+                    </ul>
+                </div>
+
+                <button class="accordion">Observación de Aves</button>
+                <div class="panel">
+                    <p>Avista especies únicas de aves andinas en su hábitat natural, incluyendo cóndores y flamencos andinos. La diversidad de ecosistemas en Chiaraque ofrece oportunidades únicas para los amantes de la ornitología. Guías locales expertos te ayudarán a identificar las diferentes especies.</p>
+                    <ul>
+                        <li>Tour de observación de aves al amanecer</li>
+                        <li>Excursión fotográfica de aves</li>
+                        <li>Charla sobre conservación de aves andinas</li>
+                    </ul>
+                </div>
+
+                <button class="accordion">Visita al Colegio Franz Tamayo</button>
+                <div class="panel">
+                    <p>Conoce esta institución educativa que está formando a las futuras generaciones de Chiaraque con un enfoque en la tecnología y los valores tradicionales. Aprende sobre los programas educativos innovadores que combinan conocimientos ancestrales con tecnología moderna.</p>
+                    <ul>
+                        <li>Tour por las instalaciones del colegio</li>
+                        <li>Charla con estudiantes y profesores</li>
+                        <li>Participación en un taller educativo</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-llegar" class="section highlight">
+            <h2>Planifica tu Visita</h2>
+            <p><strong>Mejor época para visitar:</strong> De mayo a septiembre (temporada seca)</p>
+            <p><strong>Qué llevar:</strong> Ropa abrigadora, zapatos para caminar, protector solar, sombrero y agua</p>
+            <p><strong>Cómo llegar:</strong> Desde La Paz, toma un bus a Patacamaya y luego un transporte local a Chiaraque</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30819.24436914894!2d-67.83742678894957!3d-17.19672590656696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e2a5bf2a477bdf%3A0x40e8f4f2e8f5d8f8!2sChiaraque%2C%20Bolivia!5e0!3m2!1sen!2sus!4v1652364752397!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <a href="#contacto" class="cta-button">Reserva tu aventura ahora</a>
+        </section>
+
+        <section id="contacto" class="section">
+            <h2>Contacto y Reservas</h2>
+            <div class="info-box">
+                <form id="reserva-form">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="fecha">Fecha de visita:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                    
+                    <label for="actividad">Actividad de interés:</label>
+                    <select id="actividad" name="actividad">
+                        <option value="senderismo">Senderismo y Trekking</option>
+                        <option value="cultural">Turismo Cultural</option>
+                        <option value="aves">Observación de Aves</option>
+                        <option value="colegio">Visita al Colegio Franz Tamayo</option>
+                    </select>
+                    
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                    
+                    <button type="submit" class="cta-button">Enviar Reserva</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Testimonios de Visitantes</h2>
+            <div class="testimonial">
+                "Visitar Chiaraque fue una experiencia inolvidable. Los chullpares son impresionantes y la hospitalidad de la gente local es incomparable. ¡Definitivamente volveré!" - María L., Argentina
+            </div>
+            <div class="testimonial">
+                "Como fotógrafo, encontré en Chiaraque un paraíso. Los paisajes, la cultura y la arquitectura antigua ofrecen oportunidades únicas para capturar la esencia de los Andes." - John D., Estados Unidos
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Clima Actual</h2>
+            <div class="weather-widget" id="weather-widget">
+                <h3>Cargando información del clima...</h3>
+            </div>
+        </section>
     </div>
 
-    <!-- MDBootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-    <script src="script.js"></script>
+    <footer>
+        <p>© 2024 Cantón Chiaraque - Ruta de los Chullpares | Descubre la magia de los Andes bolivianos</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <a href="#" class="close">X</a>
+        <img id="lightbox-img" src="" alt="Imagen ampliada">
+    </div>
+
+    <script>
+        // Accordion functionality
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // Lightbox functionality
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightbox-img');
+        var galleryImages = document.querySelectorAll('.gallery img');
+
+        galleryImages.forEach(function(img) {
+            img.addEventListener('click', function(e) {
+                e.preventDefault();
+                lightboxImg.src = this.src;
+                lightbox.style.display = 'block';
+            });
+        });
+
+        lightbox.addEventListener('click', function() {
+            this.style.display = 'none';
+        });
+
+        // Form submission
+        document.getElementById('reserva-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu reserva! Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+
+        // Weather widget
+        function fetchWeather() {
+            // Simulating weather data fetch
+            const weatherData = {
+                temperature: Math.floor(Math.random() * (25 - 5 + 1)) + 5,
+                condition: ['Soleado', 'Parcialmente nublado', 'Nublado', 'Lluvioso'][Math.floor(Math.random() * 4)]
+            };
+
+            const weatherWidget = document.getElementById('weather-widget');
+            weatherWidget.innerHTML = `
+                <h3>Clima en Chiaraque</h3>
+                <p>Temperatura: ${weatherData.temperature}°C</p>
+                <p>Condición: ${weatherData.condition}</p>
+            `;
+        }
+
+        // Fetch weather on page load
+        fetchWeather();
+
+        // Update weather every 30 minutes
+        setInterval(fetchWeather, 1800000);
+    </script>
 </body>
 </html>
+</antArtif
